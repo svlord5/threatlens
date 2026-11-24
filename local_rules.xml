@@ -1,0 +1,30 @@
+<!-- ThreatLens custom Wazuh rules.
+     Copy the <group> below into /var/ossec/etc/rules/local_rules.xml on the Wazuh manager,
+     then restart it:  sudo systemctl restart wazuh-manager -->
+
+<!-- Custom SOC SIEM Project Rules -->
+<group name="local,windows,custom_soc,">
+  
+  <!-- Suspicious Activity: Windows Security Log Cleared (Event ID 1102) -->
+  <rule id="100010" level="15">
+    <if_sid>63103</if_sid>
+    <description>CRITICAL: Windows Security Audit Log was cleared! (Suspicious Activity)</description>
+    <group>suspicious_activity,pci_dss_10.6.1,</group>
+  </rule>
+
+  <!-- Failed Logins: Single Failed Login (Windows Event ID 4625) -->
+  <rule id="100011" level="7">
+    <if_sid>60122</if_sid>
+    <description>WARNING: Failed Windows login attempt detected.</description>
+    <group>authentication_failed,pci_dss_10.2.4,</group>
+  </rule>
+
+  <!-- Suspicious Activity: Brute Force Attack (3 Failed Logins in 2 minutes) -->
+  <rule id="100012" level="12" frequency="3" timeframe="120">
+    <if_matched_sid>100011</if_matched_sid>
+    <same_source_ip />
+    <description>CRITICAL: Multiple failed Windows login attempts (Brute Force detected).</description>
+    <group>authentication_failures,pci_dss_10.2.4,pci_dss_11.4,</group>
+  </rule>
+
+</group>

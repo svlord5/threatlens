@@ -1,0 +1,106 @@
+[
+  {
+    "id": "log-001",
+    "timestamp": "2026-07-02T08:12:05Z",
+    "source": "Firewall",
+    "host": "10.0.5.18",
+    "action": "ALLOWED",
+    "raw": "src_ip=10.0.5.18 dest_ip=142.250.190.46 dest_port=443 protocol=TCP action=ALLOWED bytes_out=1540"
+  },
+  {
+    "id": "log-002",
+    "timestamp": "2026-07-02T08:13:22Z",
+    "source": "DNS Server",
+    "host": "10.0.5.18",
+    "action": "RESOLVED",
+    "raw": "client=10.0.5.18 query=google.com record_type=A answer=142.250.190.46"
+  },
+  {
+    "id": "log-003",
+    "timestamp": "2026-07-02T08:15:10Z",
+    "source": "Email Gateway",
+    "host": "EXCHANGE-01",
+    "action": "DELIVERED",
+    "raw": "sender=admin-support@it-desk-help.net recipient=jdoe@company.local subject=\"URGENT: Password Expiry\" status=DELIVERED"
+  },
+  {
+    "id": "log-004",
+    "timestamp": "2026-07-02T08:16:05Z",
+    "source": "DNS Server",
+    "host": "10.0.5.22",
+    "action": "RESOLVED",
+    "raw": "client=10.0.5.22 query=login-secure-auth22.com record_type=A answer=198.51.100.45"
+  },
+  {
+    "id": "log-005",
+    "timestamp": "2026-07-02T08:16:08Z",
+    "source": "Web Proxy",
+    "host": "10.0.5.22",
+    "action": "ALLOWED",
+    "raw": "src_ip=10.0.5.22 url=https://login-secure-auth22.com/login action=ALLOWED method=GET user_agent=\"Mozilla/5.0\""
+  },
+  {
+    "id": "log-006",
+    "timestamp": "2026-07-02T08:18:45Z",
+    "source": "Web Proxy",
+    "host": "10.0.5.22",
+    "action": "ALLOWED",
+    "raw": "src_ip=10.0.5.22 url=https://login-secure-auth22.com/payload/invoice_update.exe action=ALLOWED method=GET file_hash=5e884898da28047151d0e56f8dc62927"
+  },
+  {
+    "id": "log-007",
+    "timestamp": "2026-07-02T08:19:11Z",
+    "source": "Windows Sysmon",
+    "host": "WS-JDOE-01 (10.0.5.22)",
+    "action": "ProcessCreate",
+    "raw": "EventID=1 Image=C:\\Users\\jdoe\\Downloads\\invoice_update.exe CommandLine=\"invoice_update.exe -silent\" Hashes=MD5=5e884898da28047151d0e56f8dc62927"
+  },
+  {
+    "id": "log-008",
+    "timestamp": "2026-07-02T08:20:00Z",
+    "source": "Windows Sysmon",
+    "host": "WS-JDOE-01 (10.0.5.22)",
+    "action": "NetworkConnect",
+    "raw": "EventID=3 Image=C:\\Users\\jdoe\\Downloads\\invoice_update.exe DestinationIp=198.51.100.45 DestinationPort=443 Protocol=tcp"
+  },
+  {
+    "id": "log-009",
+    "timestamp": "2026-07-02T08:20:05Z",
+    "source": "Firewall",
+    "host": "10.0.5.22",
+    "action": "ALLOWED",
+    "raw": "src_ip=10.0.5.22 dest_ip=198.51.100.45 dest_port=443 protocol=TCP action=ALLOWED bytes_out=5120 bytes_in=1024"
+  },
+  {
+    "id": "log-010",
+    "timestamp": "2026-07-02T08:25:05Z",
+    "source": "Firewall",
+    "host": "10.0.5.22",
+    "action": "ALLOWED",
+    "raw": "src_ip=10.0.5.22 dest_ip=198.51.100.45 dest_port=443 protocol=TCP action=ALLOWED bytes_out=256 bytes_in=128"
+  },
+  {
+    "id": "log-011",
+    "timestamp": "2026-07-02T08:26:10Z",
+    "source": "DNS Server",
+    "host": "10.0.5.15",
+    "action": "RESOLVED",
+    "raw": "client=10.0.5.15 query=microsoft.com record_type=A answer=20.112.250.133"
+  },
+  {
+    "id": "log-012",
+    "timestamp": "2026-07-02T08:26:12Z",
+    "source": "Firewall",
+    "host": "10.0.5.15",
+    "action": "ALLOWED",
+    "raw": "src_ip=10.0.5.15 dest_ip=20.112.250.133 dest_port=443 protocol=TCP action=ALLOWED bytes_out=3020"
+  },
+  {
+    "id": "log-013",
+    "timestamp": "2026-07-02T08:30:05Z",
+    "source": "Firewall",
+    "host": "10.0.5.22",
+    "action": "ALLOWED",
+    "raw": "src_ip=10.0.5.22 dest_ip=198.51.100.45 dest_port=443 protocol=TCP action=ALLOWED bytes_out=256 bytes_in=128"
+  }
+]
