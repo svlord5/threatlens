@@ -7,12 +7,13 @@ import { PREFILL_COOKIE, prefillCookieOptions, readPrefill } from '@/lib/prefill
 import { rejectLargeBody, LIMITS } from '@/lib/limits';
 import { DEMO_MESSAGE, isDemoMode } from '@/lib/demo';
 
-// Security: strip dangerous HTML/script injection patterns
+// Security: drop every angle bracket (so no HTML tag can be formed, however it is nested)
+// and control characters. Output is also escaped by React when displayed.
 function sanitizeInput(str: string): string {
   if (!str) return '';
   return str
-    .replace(/<[^>]*>?/gm, '') // Strip HTML tags
-    .replace(/[<>]/g, '') // Strip residual brackets
+    .replace(/[<>]/g, '')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
     .trim();
 }
 

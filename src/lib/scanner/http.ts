@@ -108,7 +108,7 @@ export async function gatherHttpIntelligence(rawDomain: string) {
     result.exposed_files = await checkExposedFiles(domain);
 
   } catch (error) {
-    console.error(`HTTP check failed for ${domain}:`, error);
+    console.error("HTTP check failed for %s:", domain, error);
   }
 
   return result;
