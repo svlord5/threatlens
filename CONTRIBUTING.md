@@ -5,7 +5,7 @@ Thanks for helping. This page gets you from a fresh clone to a pull request.
 ## Set up
 
 ```bash
-git clone <your-fork-url> threatlens
+git clone https://github.com/svlord5/threatlens.git
 cd threatlens
 npm install
 npm run dev

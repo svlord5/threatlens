@@ -4,7 +4,7 @@
 
 Please report security issues privately. Do **not** open a public issue.
 
-- Email: **hello@surajv5.in** (use the subject line "ThreatLens security").
+- Email: **security@surajv5.in** (use the subject line "ThreatLens security").
 - Or, if this repository has it enabled, use GitHub's **Report a vulnerability** button under the Security tab, which keeps the report private.
 - Include: affected component or route, steps to reproduce, impact, and any proof of concept.
 - You can expect an acknowledgement within a few days. Please allow reasonable time for a fix before public disclosure.

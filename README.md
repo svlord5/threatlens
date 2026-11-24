@@ -21,7 +21,7 @@ It runs in two modes, chosen by your environment:
 You need [Node.js](https://nodejs.org) 20 or newer.
 
 ```bash
-git clone <this-repository-url> threatlens
+git clone https://github.com/svlord5/threatlens.git
 cd threatlens
 npm install
 npm run dev
