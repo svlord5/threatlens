@@ -25,7 +25,7 @@ export async function resolveDNS(domain: string, type: string) {
     
     return data.Answer.map((ans: any) => ans.data);
   } catch (error) {
-    console.error(`DNS resolution failed for ${domain} (${type}):`, error);
+    console.error("DNS resolution failed for %s (%s):", domain, type, error);
     return [];
   }
 }
@@ -42,7 +42,7 @@ async function gatherSubdomains(domain: string) {
       return { host, ip };
     });
   } catch (err) {
-    console.error(`Subdomain enumeration failed for ${domain}:`, err);
+    console.error("Subdomain enumeration failed for %s:", domain, err);
     return [];
   }
 }
@@ -52,7 +52,7 @@ async function gatherGeolocation(ip: string) {
     const res = await fetch(`http://ip-api.com/json/${ip}`, { cache: 'no-store' });
     return await res.json();
   } catch (err) {
-    console.error(`Geolocation failed for ${ip}:`, err);
+    console.error("Geolocation failed for %s:", ip, err);
     return null;
   }
 }
@@ -69,7 +69,7 @@ export async function gatherWhois(domain: string): Promise<string | null> {
     // execFile (no shell) with "--" so the hostname can never be parsed as an option or command.
     execFile('whois', ['--', cleanDomain], { timeout: 8000, maxBuffer: 256 * 1024 }, (error, stdout) => {
       if (error) {
-        console.error(`WHOIS failed for ${cleanDomain}:`, error.message);
+        console.error("WHOIS failed for %s:", cleanDomain, error.message);
         resolve(null);
       } else {
         resolve(stdout.trim());

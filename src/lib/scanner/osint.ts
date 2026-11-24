@@ -29,9 +29,9 @@ export async function gatherWaybackArchives(domain: string) {
     }
   } catch (error: any) {
     if (error.name === 'AbortError') {
-      console.warn(`[Timeout] Wayback API timed out for ${cleanDomain}`);
+      console.warn("[Timeout] Wayback API timed out for %s", cleanDomain);
     } else {
-      console.error(`Wayback API failed for ${cleanDomain}:`, error.message || error);
+      console.error("Wayback API failed for %s:", cleanDomain, error.message || error);
     }
   } finally {
     if (timeoutId) clearTimeout(timeoutId);
@@ -75,9 +75,9 @@ export async function gatherSubdomains(domain: string) {
     }
   } catch (error: any) {
     if (error.name === 'AbortError') {
-      console.warn(`[Timeout] Subdomain API (crt.sh) timed out for ${cleanDomain}`);
+      console.warn("[Timeout] Subdomain API (crt.sh) timed out for %s", cleanDomain);
     } else {
-      console.error(`Subdomain API failed for ${cleanDomain}:`, error.message || error);
+      console.error("Subdomain API failed for %s:", cleanDomain, error.message || error);
     }
   } finally {
     if (timeoutId) clearTimeout(timeoutId);
@@ -134,9 +134,9 @@ export async function gatherIpIntelligence(ip: string, apiKeys?: any) {
     }
   } catch (error: any) {
     if (error.name === 'AbortError') {
-      console.warn(`[Timeout] IP Intelligence API timed out for ${ip}`);
+      console.warn("[Timeout] IP Intelligence API timed out for %s", ip);
     } else {
-      console.error(`IP Intelligence failed for ${ip}:`, error.message || error);
+      console.error("IP Intelligence failed for %s:", ip, error.message || error);
     }
   } finally {
     if (timeoutId) clearTimeout(timeoutId);
@@ -212,9 +212,9 @@ export async function queryVirusTotal(indicator: string, type: 'ip' | 'hash' | '
     }
   } catch (error: any) {
     if (error.name === 'AbortError') {
-      console.warn(`[Timeout] VirusTotal API timed out for ${indicator}`);
+      console.warn("[Timeout] VirusTotal API timed out for %s", indicator);
     } else {
-      console.error(`VT API failed for ${indicator}:`, error.message || error);
+      console.error("VT API failed for %s:", indicator, error.message || error);
     }
   } finally {
     if (timeoutId) clearTimeout(timeoutId);
@@ -248,9 +248,9 @@ export async function queryShodan(ip: string) {
     }
   } catch (error: any) {
     if (error.name === 'AbortError') {
-      console.warn(`[Timeout] Shodan API timed out for ${ip}`);
+      console.warn("[Timeout] Shodan API timed out for %s", ip);
     } else {
-      console.error(`Shodan API failed for ${ip}:`, error.message || error);
+      console.error("Shodan API failed for %s:", ip, error.message || error);
     }
   } finally {
     if (timeoutId) clearTimeout(timeoutId);
@@ -283,7 +283,7 @@ export async function queryHaveIBeenPwned(email: string, apiKey?: string) {
       return { error: "Invalid HaveIBeenPwned API key." };
     }
   } catch (error: any) {
-    if (error.name !== 'AbortError') console.error(`HIBP API failed for ${email}:`, error.message);
+    if (error.name !== 'AbortError') console.error("HIBP API failed for %s:", email, error.message);
   } finally {
     if (timeoutId) clearTimeout(timeoutId);
   }
@@ -314,7 +314,7 @@ export async function querySslCertificate(domain: string) {
       }
     }
   } catch (error: any) {
-    if (error.name !== 'AbortError') console.error(`SSL API failed for ${cleanDomain}:`, error.message);
+    if (error.name !== 'AbortError') console.error("SSL API failed for %s:", cleanDomain, error.message);
   } finally {
     if (timeoutId) clearTimeout(timeoutId);
   }
@@ -351,7 +351,7 @@ export async function queryAlienVault(indicator: string, type: 'hash' | 'ip' | '
       return { error: "Invalid AlienVault OTX API key." };
     }
   } catch (error: any) {
-    if (error.name !== 'AbortError') console.error(`OTX API failed for ${indicator}:`, error.message);
+    if (error.name !== 'AbortError') console.error("OTX API failed for %s:", indicator, error.message);
   } finally {
     if (timeoutId) clearTimeout(timeoutId);
   }
