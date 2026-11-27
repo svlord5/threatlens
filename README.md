@@ -9,6 +9,13 @@ ThreatLens is an open-source **SOC and threat-intelligence workspace**: an IOC d
 case management, SIEM log ingestion (Wazuh and Windows agents), digital-forensics helpers, OSINT
 lookups and a rule engine that turns suspicious events into cases.
 
+<p align="center">
+  <img src="docs/images/dashboard.png" alt="ThreatLens executive dashboard in demo mode" width="900">
+</p>
+
+<p align="center"><sub>The executive dashboard, running in demo mode on synthetic data.
+More: <a href="docs/images/siem.png">SIEM and endpoints</a> · <a href="docs/images/cases.png">cases</a></sub></p>
+
 It runs in two modes, chosen by your environment:
 
 | Mode | When | What you get |
@@ -50,6 +57,7 @@ The step-by-step version is in **[docs/supabase-setup.md](docs/supabase-setup.md
 | [Access control](docs/access-control.md) | Invites, roles, access requests, demo account, how it is enforced |
 | [Integrations](docs/integrations.md) | Gemini, VirusTotal, Shodan, OSINT keys, Discord, Turnstile, Upstash |
 | [SIEM and Wazuh](docs/siem-wazuh.md) | Sending logs in, detection rules, the Windows agent, active response |
+| [Validated scenarios](docs/validated-scenarios.md) | Log clearing (1102), EICAR and LSASS dumping: what fired, the MITRE technique, the response |
 | [Usage guide](docs/usage-guide.md) | A tour of every page and how to use it |
 | [Deployment](docs/deployment.md) | Vercel, Docker, other hosts, production checklist |
 | [Architecture](docs/architecture.md) | How the pieces fit together and the security model |
@@ -67,6 +75,12 @@ The step-by-step version is in **[docs/supabase-setup.md](docs/supabase-setup.md
 - **SIEM ingestion.** An authenticated API takes events from Wazuh or a Windows forwarder, stores them,
   and streams them to the dashboard in real time.
 - **Rule engine.** Detection rules can drop noisy logs, open a case, flag an indicator or mark a host isolated.
+- **Wazuh active response.** From a case, **Isolate Host** and **Digital Forensics** (memory dump, live triage,
+  file quarantine) send commands to the agent through the Wazuh manager API, and every action lands on the case
+  timeline. The agent-side response scripts are not bundled; see [SIEM and Wazuh](docs/siem-wazuh.md#5-active-response-isolate-and-collect).
+- **MITRE ATT&CK mapping.** Wazuh alerts open cases with the rule's technique and tactic attached. Three lab
+  scenarios (event 1102 → T1070.001, EICAR → T1105, LSASS dump → T1003.001) are written up in
+  [Validated scenarios](docs/validated-scenarios.md).
 - **Forensics.** Guided artifact collection, AI-assisted log parsing, email header analysis, website
   forensics (screenshot, headers, forms, DNS, TLS, registration) and an Android malware dissector.
 - **OSINT engine.** Look up IPs, domains, URLs, hashes, email addresses and phone numbers across public sources.
